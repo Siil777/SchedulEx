@@ -1,6 +1,6 @@
 const express = require('express');
 const path = require('path');
-const {insert} = require('./build/db');
+const {insert, getData} = require('./build/db');
 const port = process.env.PORT || 5000;
 const app = express();
 app.use(express.static(path.join(__dirname, 'build')));
@@ -41,6 +41,15 @@ app.post('/post/exam', async(req,res)=>{
     }catch(error){
         console.error(error);
         res.status(500).json({message: 'Internal server error'});
+    };
+});
+app.get('/get/data', async (req,res)=>{
+    const {data} = req.body;
+    const all = await getData(data);
+    if(all){
+        res.status(200).json(all);
+    }else{
+        res.status(400).json({message: 'data not found'});
     }
 })
 

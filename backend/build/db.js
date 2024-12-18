@@ -28,4 +28,14 @@ async function insert(date,time,place,examiner) {
     });
 };
 
-module.exports = {insert};
+async function getData(data) {
+    return new Promise((resolve,reject)=>{
+        db.all('SELECT*FROM examone', (err,rows)=>{
+            if(err) return reject(err);
+            resolve(rows);
+        })
+    })
+    
+}
+
+module.exports = {insert, getData};
