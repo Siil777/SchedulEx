@@ -4,7 +4,7 @@ const {insert} = require('./build/db');
 const port = process.env.PORT || 5000;
 const app = express();
 app.use(express.static(path.join(__dirname, 'build')));
-
+app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
 const allowedOrigin = ['http://localhost:3000']
