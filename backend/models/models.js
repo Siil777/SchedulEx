@@ -27,6 +27,17 @@ async function insert(date,time,place,examiner) {
         });
     });
 };
+async function deleteData(id) {
+    return new Promise((resolve,reject)=>{
+        const query = 'DELETE FROM examone WHERE id = ?';
+        db.run(query,[id],function(err){
+            if(err){
+                return reject(err);
+            }
+            resolve({message:'Data has been deleted', changes: this.changes});
+        })
+    })
+}
 
 async function getData(data) {
     return new Promise((resolve,reject)=>{
@@ -38,4 +49,4 @@ async function getData(data) {
     
 }
 
-module.exports = {insert, getData};
+module.exports = {insert, getData, deleteData};
