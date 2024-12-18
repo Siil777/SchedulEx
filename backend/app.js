@@ -1,6 +1,6 @@
 const express = require('express');
 const path = require('path');
-
+const {insert} = require('./build/db');
 const port = process.env.PORT || 5000;
 const app = express();
 app.use(express.static(path.join(__dirname, 'build')));
@@ -26,6 +26,22 @@ app.use((req,res,next)=>{
         return res.sendStatus(204);
     }
     next();
+});
+
+app.post('/post/exam', async(req,res)=>{
+    const {date,time,place,examiner} = req.body;
+    try{
+     const insertTask = await insert(date,time,place,examiner);
+     if(insertTask){
+        res.status(201).json({message: 'data has been sent',insertTask})
+     }else{
+        res.status(405).json({message: 'Mthod not allowed'})
+     }
+
+    }catch(error){
+        console.error(error);
+        res.status(500).json({message: 'Internal server error'});
+    }
 })
 
 
