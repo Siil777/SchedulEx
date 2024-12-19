@@ -3,7 +3,7 @@ import './App.css';
 import PostEntry from './components/postEntry.js';
 import GetEntry from './components/getEntry.js';
 import DeleteEntry from './components/deleteEntry.js';
-import Calendar from './components/calendars.js';
+import Calendars from './components/calendars.js';
 function App() {
   return (
     <div>

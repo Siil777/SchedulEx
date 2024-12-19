@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
-import Calendar from 'react-calendar';
-import 'react-calendar/dist/Calendar.css';
+import Calendar from "react-calendar";
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { MobileTimePicker } from '@mui/x-date-pickers';
 const PostExam = async (newExam) => {
     try {
         const response = await fetch('http://localhost:5000/api/exams/post/exam', {
@@ -20,7 +22,7 @@ const PostExam = async (newExam) => {
 
 }
 const PostEntry = () => {
-    const [time, setTime] = useState('');
+    const [time, setTime] = useState(null);
     const [date,setDate] = useState(new Date());
     const [place, setPlace] = useState('');
     const [examiner, setExaminer] = useState('');
@@ -29,9 +31,9 @@ const PostEntry = () => {
         e.preventDefault();
         if(date && time && place && examiner){
             const formtedDate = date.toISOString().split('T')[0];
-            const newExam = {date, time, place, examiner }
+            const newExam = {date, time: time.format('HH:mm'), place, examiner }
             await PostExam(newExam);
-            setTime('');
+            setTime(null);
             setDate('');
             setPlace('');
             setExaminer('');
@@ -54,14 +56,14 @@ const PostEntry = () => {
                         value={date}
                     />
                 </div>
-                <div className="form-group">
-                    <input className="mt-2"
-                        type="time"
-                        id="time"
+                <div className="form-group mt-2">
+                    <LocalizationProvider dateAdapter={AdapterDayjs}>
+                        <MobileTimePicker 
+                        label="Select time"
                         value={time}
-                        onChange={(e) => setTime(e.target.value)}
-        
-                    />
+                        onChange={(newTime)=>setTime(newTime)}
+                        />
+                    </LocalizationProvider>
                 </div>
                 <div className="form-group">
                     <input className="mt-2"

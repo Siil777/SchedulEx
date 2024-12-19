@@ -26,17 +26,25 @@ const GetList = () => {
     const handleDeleteSuccess = (deletedId) => {
         setData((prevData)=>prevData.filter((item)=>item.id !==deletedId))
     }
+    const listStyle = {
+        listStyleType: "none",
+        padding: "10px",
+        margin: "10px 30px 0 0",
+        border: "1px solid #ccc",
+        borderRadius: "5px",
+        backgroundColor: "#f9f9f9",
+        boxShadow: "0 2px 5px rgba(0,0,0, 0.1)",
+    }
 
     return (
         <div>
             <ul>
                 {data.map((item, index) => (
-                    <li key={index}>{Object.entries(item)
+                    <li key={index} style={listStyle}>{Object.entries(item)
                         .map(([key, value]) => `${key}:${value}`)
                         .join(', ')}</li>
                 ))}
             </ul>
-  {/*           <DeleteEntry onDeleteSuccess={handleDeleteSuccess}/> */}
         </div>
     )
 }
