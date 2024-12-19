@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-
+import Calendar from 'react-calendar';
+import 'react-calendar/dist/Calendar.css';
 const PostExam = async (newExam) => {
     try {
         const response = await fetch('http://localhost:5000/api/exams/post/exam', {
@@ -20,13 +21,14 @@ const PostExam = async (newExam) => {
 }
 const PostEntry = () => {
     const [time, setTime] = useState('');
-    const [date,setDate] = useState('');
+    const [date,setDate] = useState(new Date());
     const [place, setPlace] = useState('');
     const [examiner, setExaminer] = useState('');
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         if(date && time && place && examiner){
+            const formtedDate = date.toISOString().split('T')[0];
             const newExam = {date, time, place, examiner }
             await PostExam(newExam);
             setTime('');
@@ -47,12 +49,9 @@ const PostEntry = () => {
         <div className="d-flex justify-content-center mt-5">
             <form onSubmit={handleSubmit}>
             <div className="form-group">
-                    <input
-                        type="date"
-                        id="date"
+                    <Calendar
+                        onChange={setDate}
                         value={date}
-                        onChange={(e) => setDate(e.target.value)}
-        
                     />
                 </div>
                 <div className="form-group">
