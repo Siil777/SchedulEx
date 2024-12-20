@@ -23,9 +23,6 @@ const GetList = () => {
         getEntry();
     }, []);
 
-    const handleDeleteSuccess = (deletedId) => {
-        setData((prevData)=>prevData.filter((item)=>item.id !==deletedId))
-    }
     const listStyle = {
         listStyleType: "none",
         padding: "10px",
@@ -36,14 +33,18 @@ const GetList = () => {
         boxShadow: "0 2px 5px rgba(0,0,0, 0.1)",
         fontFamily: 'cursive'
     }
-
+    const handleDelete = (id) => {
+        setData((prevData) => prevData.filter((item) => item.id !== id))
+    }
     return (
         <div>
             <ul>
-                {data.map((item, index) => (
-                    <li key={index} style={listStyle}>{Object.entries(item)
+                {data.map((item) => (
+                    <li key={item.id} style={listStyle}>{Object.entries(item)
                         .map(([key, value]) => `${key}:${value}`)
-                        .join(', ')}</li>
+                        .join(', ')}
+                        <DeleteEntry id={item.id} onDeleteSuccess={handleDelete} />
+                    </li>
                 ))}
             </ul>
         </div>
