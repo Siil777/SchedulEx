@@ -37,17 +37,20 @@ const GetList = () => {
         setData((prevData) => prevData.filter((item) => item.id !== id))
     }
     return (
-        <div>
-            <ul>
-                {data.map((item) => (
-                    <li key={item.id} style={listStyle}>{Object.entries(item)
-                        .map(([key, value]) => `${key}:${value}`)
-                        .join(', ')}
-                        <DeleteEntry id={item.id} onDeleteSuccess={handleDelete} />
-                    </li>
-                ))}
-            </ul>
-        </div>
+        <ul>
+            {data.map((item) => (
+                <li key={item.id}>
+                    <ul style={{ listStyleType: "none", padding: 0 }}>
+                        {Object.entries(item).map(([key, value]) => (
+                            <li key={key} style={{margin: "4px 0"}}>
+                                <strong>{key}:</strong> {value}
+                            </li>
+                        ))}
+                        </ul>
+                    <DeleteEntry id={item.id} onDeleteSuccess={handleDelete} />
+                </li>
+            ))}
+        </ul>
     )
 }
 export default GetList;
