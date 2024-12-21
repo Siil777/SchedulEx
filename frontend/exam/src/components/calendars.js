@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Modal from "./modals.js"; 
+import Modal from "./modals.js";
 
 const Call = () => {
     const [selectedCell, setSelectedCell] = useState(null); 

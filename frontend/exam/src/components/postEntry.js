@@ -3,7 +3,8 @@ import Calendar from "./calendars";
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { MobileTimePicker } from '@mui/x-date-pickers';
-const PostExam = async (newExam) => {
+
+export const PostExam = async (newExam) => {
     try {
         const response = await fetch('http://localhost:5000/api/exams/post/exam', {
             method: 'POST',
@@ -49,43 +50,13 @@ const PostEntry = () => {
     }
     return (
         <div className="d-flex justify-content-center mt-5">
-            <form onSubmit={handleSubmit}>
+            <form>
             <div className="form-group">
                     <Calendar
                         onChange={setDate}
                         value={date}
                     />
                 </div>
-                <div className="form-group mt-2">
-                    <LocalizationProvider dateAdapter={AdapterDayjs}>
-                        <MobileTimePicker 
-                        label="Select time"
-                        value={time}
-                        onChange={(newTime)=>setTime(newTime)}
-                        />
-                    </LocalizationProvider>
-                </div>
-                <div className="form-group">
-                    <input className="mt-2"
-                        placeholder="class"
-                        type="text"
-                        id="place"
-                        value={place}
-                        onChange={(e) => setPlace(e.target.value)}
-  
-                    />
-                </div>
-                <div className="form-group">
-                    <input className="mt-2"
-                        placeholder="examiner"
-                        type="text"
-                        id="examiner"
-                        value={examiner}
-                        onChange={(e) => setExaminer(e.target.value)}
-        
-                    />
-                </div>
-                <button className="btn btn-outline-primary mt-2">Add</button>
             </form>
         </div >
     )

@@ -1,10 +1,22 @@
-import * as React from 'react';
-
+import React, {useState,useEffect} from 'react';
+import { PostExam } from './postEntry';
 
 const Modal = ({ celldata, onClose }) => {
+    const [date, setDate] = useState(celldata.date || '');
+    const [time, setTime] = useState(celldata.time || '');
+    const [place, setPlace] = useState(celldata.place || '');
+    const [examiner, setExaminer] = useState(celldata.examiner || '');
+
+
     if (!celldata) return null;
 
-    const { date, time, place, examiner } = celldata;
+    const handleSave = (e) => {
+        e.preventDefault();
+        const savedData = {date,time,place,examiner}
+        console.log('Saved data', savedData);
+        PostExam(savedData);
+    }
+
 
     return (
         <div className='modal-overlay custom-modal'>
@@ -13,19 +25,27 @@ const Modal = ({ celldata, onClose }) => {
                     ×
                 </button>
                 <h4>Edit information</h4>
-                <p>
-                    <strong>Date:</strong> {date}
-                </p>
-                <p>
-                    <strong>Time:</strong> {time}
-                </p>
-                <p>
-                    <strong>Place:</strong> {place}
-                </p>
-                <p>
-                    <strong>Examiner:</strong> {examiner}
-                </p>
-                <button className='btn btn-outline-green' onClick={onClose}>
+                <input 
+                type='date'
+                value={date}
+                onChange={(e)=>setDate(e.target.value)}
+                />
+                 <input 
+                type='time'
+                value={time}
+                onChange={(e)=>setTime(e.target.value)}
+                />
+                 <input 
+                type='text'
+                value={place}
+                onChange={(e)=>setPlace(e.target.value)}
+                />
+                 <input 
+                type='text'
+                value={examiner}
+                onChange={(e)=>setExaminer(e.target.value)}
+                />
+                <button className='btn btn-outline-green' onClick={handleSave}>
                     Save changes
                 </button>
             </div>
