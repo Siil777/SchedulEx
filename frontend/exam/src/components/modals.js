@@ -1,6 +1,7 @@
 import React, {useState,useEffect} from 'react';
 
 const Modal = ({ celldata, onClose, onSave }) => {
+    const [day, setDay] = useState(celldata.day || '');
     const [date, setDate] = useState(celldata.date || '');
     const [time, setTime] = useState(celldata.time || '');
     const [place, setPlace] = useState(celldata.place || '');
@@ -11,7 +12,7 @@ const Modal = ({ celldata, onClose, onSave }) => {
 
     const handleSave = (e) => {
         e.preventDefault();
-        const savedData = {date,time,place,examiner}
+        const savedData = {day: celldata.day,date,time,place,examiner}
         console.log('Saved data', savedData);
         onSave(savedData);
     }

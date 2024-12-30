@@ -23,6 +23,7 @@ export const PostExam = async (newExam) => {
 
 }
 const PostEntry = () => {
+    const [day, setDay] = useState(null);
     const [time, setTime] = useState(null);
     const [date,setDate] = useState(new Date());
     const [place, setPlace] = useState('');
@@ -30,10 +31,11 @@ const PostEntry = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if(date && time && place && examiner){
+        if(day && date && time && place && examiner){
             const formtedDate = date.toISOString().split('T')[0];
-            const newExam = {date, time: time.format('HH:mm'), place, examiner }
+            const newExam = {date: formtedDate, time: time.format('HH:mm'), place, examiner }
             await PostExam(newExam);
+            setDay(null);
             setTime(null);
             setDate('');
             setPlace('');

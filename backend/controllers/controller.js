@@ -3,9 +3,9 @@ const {insert, getData, deleteData} = require('../models/models.js');
 
 
 exports.createExam = async(req,res)=>{
-    const {date,time,place,examiner} = req.body;
+    const {day,date,time,place,examiner} = req.body;
     try{
-     const insertTask = await insert(date,time,place,examiner);
+     const insertTask = await insert(day,date,time,place,examiner);
      if(insertTask){
         res.status(201).json({message: 'data has been sent',insertTask})
      }else{

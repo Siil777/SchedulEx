@@ -2,14 +2,15 @@ const {resolve} = require('path');
 
 const sqlite3 = require('sqlite3').verbose();
 
-const db = new sqlite3.Database('examone.db',(err)=>{
+const db = new sqlite3.Database('examthree.db',(err)=>{
     if(err){
         throw new Error('Database error: ' + err.message);
 
     }else{
         console.log('connection estabilished');
-        db.run(`CREATE TABLE IF NOT EXISTS examone(
+        db.run(`CREATE TABLE IF NOT EXISTS examthree(
             id INTEGER PRIMARY KEY AUTOINCREMENT,
+            day TEXT,
             date TEXT,
             time TEXT,
             place TEXT,
@@ -17,19 +18,23 @@ const db = new sqlite3.Database('examone.db',(err)=>{
     }
 });
 
-async function insert(date,time,place,examiner) {
+async function insert(day,date,time,place,examiner) {
     return new Promise((resolve,reject)=>{
-        db.run('INSERT INTO examone (date,time,place,examiner) VALUES (?,?,?,?)', [date,time,place,examiner], 
+        /* const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+        const dayIndex = new Date(date).getDay();
+        const day = days[dayIndex]; */
+
+        db.run('INSERT INTO examthree (day,date,time,place,examiner) VALUES (?,?,?,?,?)', [day,date,time,place,examiner], 
             function(err){
             if(err) return reject(err);
-            console.log(`data is ${date},${time},${place},${examiner} data id is: ${this.lastID}`);
-            resolve({id:this.lastID,data:{date,time,place,examiner}})
+            console.log(`data is ${day},${date},${time},${place},${examiner} data id is: ${this.lastID}`);
+            resolve({id:this.lastID,data:{day,date,time,place,examiner}});
         });
     });
 };
 async function deleteData(id) {
     return new Promise((resolve,reject)=>{
-        const query = 'DELETE FROM examone WHERE id = ?';
+        const query = 'DELETE FROM examthree WHERE id = ?';
         db.run(query,[id],function(err){
             if(err){
                 return reject(err);
@@ -41,7 +46,7 @@ async function deleteData(id) {
 
 async function getData(data) {
     return new Promise((resolve,reject)=>{
-        db.all('SELECT*FROM examone', (err,rows)=>{
+        db.all('SELECT*FROM examthree', (err,rows)=>{
             if(err) return reject(err);
             resolve(rows);
         })
