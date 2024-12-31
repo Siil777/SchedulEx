@@ -25,11 +25,6 @@ const DeleteEntry = ({id,onDeleteSuccess}) => {
                 console.error(e);
             }
         };
-        return(
-            <div className='ms-3'>        
-                  <button className='btn btn-outline-danger ms-1' onClick={handleDelete}>Delete</button> 
-            </div>
-        )
     
 }
 export default DeleteEntry;

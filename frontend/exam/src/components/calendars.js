@@ -13,7 +13,7 @@ const Call = () => {
     });
 
     const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-    const times = ["10 am", "11 am", "03 pm", "05 pm", "07 pm"];
+    const times = ["Node.js", "React.js", "HTML5", "SASS", "Gulp"];
 
     useEffect(() => {
         const fetchData = async () => {
@@ -90,10 +90,10 @@ const Call = () => {
             setCalendarData((prevData) => prevData.filter((item) => item.id !== id))
         } */
     const handleDelete = (keyToDelete) => {
-        localStorage.removeItem(keyToDelete);
         setCalendarData(prevData => {
             const newData = { ...prevData }
             delete newData[keyToDelete];
+            localStorage.setItem('calendarData', JSON.stringify(newData));
             return newData;
         });
         alert(`${keyToDelete} removed`)

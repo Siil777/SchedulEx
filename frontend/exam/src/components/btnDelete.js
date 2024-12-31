@@ -3,10 +3,17 @@ import Stack from '@mui/material/Stack';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 
-export default function IconButtonSizes() {
+export default function IconButtonSizes({ onClick }) {
   return (
     <Stack direction="row" spacing={1} sx={{ alignItems: 'center' }}>
-      <IconButton aria-label="delete" size="small">
+      <IconButton
+        aria-label="delete"
+        size="small"
+        onClick={(e) => {
+          e.stopPropagation(); 
+          onClick(); 
+        }}
+      >
         <DeleteIcon fontSize="inherit" />
       </IconButton>
     </Stack>
