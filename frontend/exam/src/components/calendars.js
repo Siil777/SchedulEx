@@ -99,70 +99,63 @@ const Call = () => {
         alert(`${keyToDelete} removed`)
     }
     return (
-        <div>
-            <body className="is-grid">
-                <div className="container">
-                    <div className="w-95 w-md-75 w-lg-60 w-xl-55 mx-auto mb-6 text-center">
-                        <h2>Exam table</h2>
-                    </div>
-                    <div className="row">
-                        <div className="col-md-12">
-                            <div className="schedule-table">
-                                <table className="table bg-white">
-                                    <thead>
-                                        <tr>
-                                            <th>Routine</th>
-                                            {times.map((time) => (
-                                                <th key={time}>{time}</th>
-                                            ))}
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {days.map((day) => (
-                                            <tr key={day}>
-                                                <td className="day">{day}</td>
-                                                {times.map((time) => {
-                                                    const cellKey = `${day}-${time}`;
-                                                    return (
-                                                        <td key={cellKey} onClick={() => handleCellClick(day, time)}>
-                                                            <BtnDelete
-                                                                onClick={() => handleDelete(cellKey)}
-                                                            />
-                                                            {calendarData[cellKey] ? (
-                                                                <ul style={{ listStyleType: "none", padding: 0 }}>
-                                                                    {Object.entries(calendarData[cellKey]).map(([key, value]) => (
-                                                                        <li key={key} style={{ margin: "4px 0" }}>
-                                                                            <strong>{key}:</strong> {value}
-
-                                                                        </li>
-
-                                                                    ))}
-
-                                                                </ul>
-
-                                                            ) : (
-                                                                <p>Add activity</p>
-                                                            )}
-                                                        </td>
-                                                    );
-                                                })}
-                                            </tr>
+        <div className="is-grid">
+            <div className="container">
+                <div className="text-center mb-4">
+                    <h2>Exam table</h2>
+                </div>
+                <div className="col-12">
+                    <div>
+                        <div className="table-responsive">
+                            <table className="table table-bordered bg-white">
+                                <thead>
+                                    <tr className="for-th">
+                                        <th>Routine</th>
+                                        {times.map((time) => (
+                                            <th key={time}>{time}</th>
                                         ))}
-                                    </tbody>
-                                </table>
-                            </div>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {days.map((day) => (
+                                        <tr key={day}>
+                                            <td className="day">{day}</td>
+                                            {times.map((time) => {
+                                                const cellKey = `${day}-${time}`;
+                                                return (
+                                                    <td key={cellKey} onClick={() => handleCellClick(day, time)}>
+                                                        <BtnDelete onClick={() => handleDelete(cellKey)} />
+                                                        {calendarData[cellKey] ? (
+                                                            <ul style={{ listStyleType: "none", padding: 0 }}>
+                                                                {Object.entries(calendarData[cellKey]).map(([key, value]) => (
+                                                                    <li key={key} style={{ margin: "4px 0" }}>
+                                                                        <strong>{key}:</strong> {value}
+                                                                    </li>
+                                                                ))}
+                                                            </ul>
+                                                        ) : (
+                                                            <p>Add activity</p>
+                                                        )}
+                                                    </td>
+                                                );
+                                            })}
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
-                {isModalOpen && selectedCell && (
-                    <Modal
-                        celldata={selectedCell}
-                        onSave={saveData}
-                        onClose={closeModal}
-                    />
-                )}
-            </body>
+            </div>
+            {isModalOpen && selectedCell && (
+                <Modal
+                    celldata={selectedCell}
+                    onSave={saveData}
+                    onClose={closeModal}
+                />
+            )}
         </div>
+
     );
 };
 

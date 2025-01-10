@@ -1,7 +1,7 @@
-body{margin-top:20px;}
+/* body{margin-top:20px;}
 .schedule-table table thead tr {
 background: #86d4f5;
-}
+} */
 .schedule-table table thead th {
 padding: 25px 50px;
 color: #fff;
@@ -336,9 +336,9 @@ min-width: 135px;
  }
 
  /* $grid_color: #00f;*/
-$grid_margin: percentage(40 / 1920); // 40 / 1920 * 100%;
-$grid_width: percentage(157 / (1920 - 40 * 2));
-$grid_gutter: percentage(30 / (1920 - 40 * 2));
+$grid_margin: percentage(40 / 20); // 40 / 1920 * 100%;
+$grid_width: percentage(157 / (20 - 40 * 2));
+$grid_gutter: percentage(30 / (20 - 40 * 2));
 
 body {
     position: relative;
@@ -362,4 +362,10 @@ body {
         pointer-events: none;
     }
 }
+.for-th th {
+    color: white;
+    font-size: 16px;
+}
+
+
 
