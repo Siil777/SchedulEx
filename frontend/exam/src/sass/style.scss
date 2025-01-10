@@ -281,7 +281,6 @@ min-width: 135px;
  .container {
      text-align: left;
      overflow: hidden;
-     width: 80%;
      margin: 0 auto;
    display: table;
    padding: 0 0 8em 0;
@@ -335,31 +334,5 @@ min-width: 135px;
  .container th:nth-child(4) { display: none; }
  }
 
- /* $grid_color: #00f;*/
-$grid_margin: percentage(40 / 1920); // 40 / 1920 * 100%;
-$grid_width: percentage(157 / (1920 - 40 * 2));
-$grid_gutter: percentage(30 / (1920 - 40 * 2));
-
-body {
-    position: relative;
-    padding: 50px 0;
-    min-height: 100vh;
-    
-    &.is-grid::after {
-        content: '';
-        position: absolute;
-        z-index: 1000;
-        top: 0;
-        bottom: 0;
-        left: $grid_margin;
-        right: $grid_margin;
-        opacity: 0.15;
-        background: repeating-linear-gradient(90deg,
-        /*     $grid_color 0, */
-           /*  $grid_color */ $grid_width,
-            transparent $grid_width,
-            transparent $grid_width + $grid_gutter);
-        pointer-events: none;
-    }
-}
+  
 
