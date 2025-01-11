@@ -199,7 +199,7 @@ min-width: 135px;
 }
 
 .modal-content {
-    background: #fff;
+    background: rgba(0, 0, 0, 0.8);
     padding: 20px;
     border-radius: 8px;
     max-width: 400px;
@@ -334,5 +334,13 @@ min-width: 135px;
  .container th:nth-child(4) { display: none; }
  }
 
+ .custom-modal-position {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background: transparent;
+ }
   
+
 
