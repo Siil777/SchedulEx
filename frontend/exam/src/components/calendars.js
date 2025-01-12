@@ -98,25 +98,26 @@ const Call = () => {
         });
         alert(`${keyToDelete} removed`)
     }
+
     return (
-        <div className="is-grid">
-            <div className="container">
-                <div className="text-center mb-4">
-                    <h2>Exam table</h2>
-                </div>
+        <div className="container">
+            <div className="text-center">
+                <h2>Exam Table</h2>
+            </div>
+            <div className="row">
                 <div className="col-12">
-                    <div>
-                        <div className="table-responsive">
+                    <div className="schedule-table mx-auto" style={{ overflowX: "auto" }}>
+                        <div className="table-wrapper">
                             <table className="table table-bordered bg-white">
                                 <thead>
-                                    <tr className="for-th">
+                                    <tr>
                                         <th>Routine</th>
                                         {times.map((time) => (
                                             <th key={time}>{time}</th>
                                         ))}
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody className="custom-font-style">
                                     {days.map((day) => (
                                         <tr key={day}>
                                             <td className="day">{day}</td>
@@ -126,15 +127,15 @@ const Call = () => {
                                                     <td key={cellKey} onClick={() => handleCellClick(day, time)}>
                                                         <BtnDelete onClick={() => handleDelete(cellKey)} />
                                                         {calendarData[cellKey] ? (
-                                                            <ul style={{ listStyleType: "none", padding: 0 }}>
+                                                            <ul className="list-unstyled my-2">
                                                                 {Object.entries(calendarData[cellKey]).map(([key, value]) => (
-                                                                    <li key={key} style={{ margin: "4px 0" }}>
+                                                                    <li key={key} className="my-1">
                                                                         <strong>{key}:</strong> {value}
                                                                     </li>
                                                                 ))}
                                                             </ul>
                                                         ) : (
-                                                            <p>Add activity</p>
+                                                            <p className="text-muted">Add activity</p>
                                                         )}
                                                     </td>
                                                 );
@@ -157,6 +158,7 @@ const Call = () => {
         </div>
 
     );
+
 };
 
 export default Call;
