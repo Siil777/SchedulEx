@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 const DeleteEntry = ({id,onDeleteSuccess}) => {
         const handleDelete = async () => {
             try{
-                const response = await fetch('http://localhost:5000/api/exams/delete/exam',{
+                const response = await fetch('https://tough-plain-thing.glitch.me/api/exams/delete/exam',{
                     method: 'DELETE',
                     headers: {
                         'Content-Type':'application/json'

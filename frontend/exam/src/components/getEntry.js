@@ -5,7 +5,7 @@ const GetList = () => {
     useEffect(() => {
         const getEntry = async () => {
             try {
-                const response = await fetch('http://localhost:5000/api/exams/get/exam', {
+                const response = await fetch('https://tough-plain-thing.glitch.me/api/exams/get/exam', {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json'

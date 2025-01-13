@@ -6,7 +6,7 @@ import { MobileTimePicker } from '@mui/x-date-pickers';
 
 export const PostExam = async (newExam) => {
     try {
-        const response = await fetch('http://localhost:5000/api/exams/post/exam', {
+        const response = await fetch('https://tough-plain-thing.glitch.me/api/exams/post/exam', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(newExam)
