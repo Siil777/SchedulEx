@@ -7,7 +7,7 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 const examRoutes = require('./routes/routes.js');
 
-const allowedOrigin = ['http://localhost:3000']
+const allowedOrigin = ['http://localhost:3000','https://siil777.github.io']
 
 app.use((req,res,next)=>{
     const origin = req.headers.origin;
